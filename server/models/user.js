@@ -1,8 +1,8 @@
-const mongoose = require('mongoose'),  
+var mongoose = require('mongoose'),  
       Schema = mongoose.Schema,
       bcrypt = require('bcrypt-nodejs');
 	  
-const UserSchema = new Schema({  
+var UserSchema = new Schema({  
   email: {
     type: String,
     lowercase: true,
@@ -29,7 +29,7 @@ const UserSchema = new Schema({
 
 // Pre-salva o usuario usando criptografia
 UserSchema.pre('save', function(next) {  
-  const user = this,
+  var user = this,
         SALT_FACTOR = 5;
 
   if (!user.isModified('senha')) return next();
@@ -53,6 +53,6 @@ UserSchema.methods.comparePassword = function(candidatePassword, cb) {
 
     cb(null, isMatch);
   });
-}
+};
 
 module.exports = mongoose.model('User', UserSchema);

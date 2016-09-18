@@ -1,5 +1,5 @@
 // Importing Node modules and initializing Express
-const express = require('express'),  
+var express = require('express'),  
       app = express(),
       bodyParser = require('body-parser'),
       logger = require('morgan'),
@@ -43,8 +43,8 @@ app.use(function(req, res, next) {
 router(app);
 
 app.all('*', function(req, res) {
-    throw new Error("Bad request")
-})
+    throw new Error("Bad request");
+});
 
 app.use(function(e, req, res, next) {
     if (e.message === "Bad request") {
@@ -59,5 +59,5 @@ app.use(function(req, res, next) {
 
 
 // Start the server
-const server = app.listen(config.port);  
+var server = app.listen(config.port);  
 console.log('Server rodando na porta: ' + config.port + '.');  

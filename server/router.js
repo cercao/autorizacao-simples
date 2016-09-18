@@ -1,15 +1,15 @@
-const AuthenticationController = require('./controllers/authentication'),  
+var AuthenticationController = require('./controllers/authentication'),  
       express = require('express'),
       passportService = require('./config/passport'),
       passport = require('passport');
 	  
 // autenticacao para proteger as rotas desejadas
-const requireAuth = passport.authenticate('jwt', { session: false });  
-const requireLogin = passport.authenticate('local', { session: false });
+var requireAuth = passport.authenticate('jwt', { session: false });  
+var requireLogin = passport.authenticate('local', { session: false });
  
 module.exports = function(app) {  
       // cria grupo de rotas
-      const apiRoutes = express.Router(),
+      var apiRoutes = express.Router(),
             authRoutes = express.Router();
 
       console.log("entrou no registro de rotas");

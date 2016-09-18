@@ -1,6 +1,4 @@
-'use strict'; // ES6
-
-const jwt = require('jsonwebtoken'),  
+var jwt = require('jsonwebtoken'),  
       crypto = require('crypto'),
       User = require('../models/user'),
       config = require('../config/main');
@@ -25,22 +23,22 @@ exports.login = function(req, res, next) {
   
   console.log("entrou no login");
 
-  let userInfo = setUserInfo(req.user);
+  var userInfo = setUserInfo(req.user);
 
   res.status(200).json({
     token: 'JWT ' + generateToken(userInfo),
     user: userInfo
   });
-}
+};
 
 // rota para cadastro
 exports.register = function(req, res, next) {  
 	console.log("entrou no cadastro");
 
   // validacoes
-  const email = req.body.email;
-  const nome = req.body.nome;  
-  const senha = req.body.senha;
+  var email = req.body.email;
+  var nome = req.body.nome;  
+  var senha = req.body.senha;
   
   if (req.body.telefones)
     console.log("tem telefones");
@@ -69,7 +67,7 @@ exports.register = function(req, res, next) {
       }
 
       // se o email ainda nao existe e passou a senha, cria usuario
-      let user = new User({
+      var user = new User({
         email: email,
         senha: senha,
         telefones: req.body.telefones,
@@ -86,11 +84,11 @@ exports.register = function(req, res, next) {
         if (err) { return next(err); }
 
         // Subscribe member to Mailchimp list
-        // mailchimp.subscribeToNewsletter(user.email);
+        // mailchimp.subscribeToNewsvarter(user.email);
 
         // Respond with JWT if user was created
 
-        let userInfo = setUserInfo(user);
+        var userInfo = setUserInfo(user);
 
         res.status(201).json({
           token: 'JWT ' + generateToken(userInfo),
@@ -98,5 +96,5 @@ exports.register = function(req, res, next) {
         });
       });
   });
-}
+};
   

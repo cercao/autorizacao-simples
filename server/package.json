@@ -20,5 +20,14 @@
     "passport-jwt": "^2.1.0",
     "passport-local": "^1.0.0",
     "request": "^2.75.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-express": "^0.3.5",
+    "gulp-install": "^0.6.0",
+    "gulp-jshint": "^2.0.1",
+    "gulp-util": "^3.0.7",
+    "jshint": "^2.9.3",
+    "jshint-stylish": "^2.2.1"
   }
 }

@@ -13,10 +13,10 @@ var cadastrar = function(callbackOK){
   var options = { method: 'POST',
     url: 'http://localhost:'+config.port+'/api/auth/register',
     headers: 
-    { 'content-type': 'application/x-www-form-urlencoded',
+    { 'content-type': 'application/json',
       'cache-control': 'no-cache' },
     form: 
-    { email: 'cercaoc@gmail.com',
+    { email: 'lucas@gmail.com',
       senha: 'teste',
       nome: 'Lucas',
       telefones: [ { numero: "111111111", ddd: "111"} ] } };
@@ -31,7 +31,7 @@ var cadastrar = function(callbackOK){
     if (callbackOK)
       callbackOK();
   });
-}
+};
 
 /***************/
 /**** LOGIN ****/
@@ -41,9 +41,9 @@ var efetuarLogin = function(callbackOK){
   var options = { method: 'POST',
     url: 'http://localhost:'+config.port+'/api/auth/login',
     headers: 
-    { 'content-type': 'application/x-www-form-urlencoded',
+    { 'content-type': 'application/json',
       'cache-control': 'no-cache' },
-    form: { email: 'cercaoc@gmail.com', senha: 'teste' } };
+    form: { email: 'lucas@gmail.com', senha: 'teste' } };
 
   console.log("======= TESTE 2 ======== \n" + options.method + ": " + options.url);
 
@@ -57,7 +57,7 @@ var efetuarLogin = function(callbackOK){
     if(callbackOK)
       callbackOK();
   });
-}
+};
 
 
 /*************/
@@ -65,12 +65,12 @@ var efetuarLogin = function(callbackOK){
 /*************/
 var efetuarGET = function(callbackOK){
   var options = { method: 'GET',
-    url: 'http://localhost:'+config.port+'/api/auth/dashboard',
+    url: 'http://localhost:'+config.port+'/api/auth/getUser',
     headers: 
     { 
       'cache-control': 'no-cache',
       authorization: token },
-    form: { email: 'cercaoc@gmail.com', password: 'teste' } };
+    form: { email: 'lucas@gmail.com', password: 'teste' } };
 
   console.log("======= TESTE 3 ======== \n" + options.method + ": " + options.url );
 
@@ -84,7 +84,7 @@ var efetuarGET = function(callbackOK){
       callbackOK();
   });
 
-}
+};
 
 // chama testes assincronos e termina no fim
 cadastrar(function(){
