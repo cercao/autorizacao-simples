@@ -8,13 +8,13 @@ var gulp   = require('gulp'),
 gulp.task('default', ['watch']);
 
 // configure the jshint task
-gulp.task('jshint', function() {
+gulp.task('jshint',  ['build'], function() {
   return gulp.src(['**/*.js', '!node_modules/**'])
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('build', ['jshint'],function() {
+gulp.task('build',function() {
     gulp.src(['package.json']).pipe(install({
       args: ['dev', '--no-shrinkwrap' ]} // npm install --dev --no-shrinkwrap 
     ));
@@ -25,6 +25,6 @@ gulp.task('watch', ['run'],function() {
   gulp.watch('**/*.js', ['jshint']);
 });
 
-gulp.task('run', ['build'],function() {
+gulp.task('run', ['jshint'],function() {
     server.run(['index.js']);
 });
