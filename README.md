@@ -19,7 +19,7 @@ $ gulp
 Este processo deverá garantir as dependências, rodar o JSHint uma vez, configurar a atualização automática (que rodará o JSHint sempre que atualizar também) e rodar a aplicação. Caso você queira apenas executar, basta usar o comando 'gulp run' ou apenas usar nodemon index.js.
 
 ## Deploy
-Fiz o deploy na instância 52.67.118.78 da aws ec2.
+Fiz o deploy na instância 52.67.118.78 da aws ec2 usando TMUX.
 Os métodos rest expostos são:
 - Cadastro de usuários: http://52.67.118.78/api/auth/register
 - Login: http://52.67.118.78/api/auth/login
@@ -67,7 +67,7 @@ resposta:
 Com relação aos requisitos:
 - Optei por usar o JWT para gerenciar o tempo em que a sessão será mantida, ao invés de inserir a regra de verificação conforme o solicitado;
 - Todas as rotas não esperadas são tratadas corretamente conforme o solicitado (retornando json com uma mensagem), porém, as mensagens de erro de autorização estou retornando o default do passport (unauthorized). Não tive tempo de sobrescrever o callback de erro padrão;
-- Não estou trazando todas as informações do usuário. Fiz um SetUser para limpar informações desnecessárias e evitar trafegar muitos dados. Todos as informações são mantidas na base;
+- Não estou retornando todas as informações do usuário. Fiz um SetUser para limpar informações desnecessárias e evitar trafegar muitos dados. Todos as informações são mantidas na base;
 
 ## Referências
 - http://passportjs.org/docs/authenticate
