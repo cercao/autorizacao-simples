@@ -15,7 +15,9 @@ gulp.task('jshint', function() {
 });
 
 gulp.task('build', ['jshint'],function() {
-    gulp.src(['package.json']).pipe(install());
+    gulp.src(['package.json']).pipe(install({
+      args: ['dev', '--no-shrinkwrap' ]} // npm install --dev --no-shrinkwrap 
+    ));
 });
 
 
