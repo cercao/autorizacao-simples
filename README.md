@@ -26,48 +26,43 @@ Os métodos rest expostos são:
 - Busca usuário: http://52.67.118.78/api/auth/getUser
 
 ## Teste
-Os testes unitários estão em 2 arquivos na raiz da aplicação server:
-- unit-test.js (para teste local);
-- unit-test-external.js (para teste apontando para a aws);
-Usei apenas um simples script em node para executar os teste da API. Para rodar, basta usar o próprio node ou o nodemon assim:
+Os testes unitários estão no arquivo unit-test.js na raiz da aplicação server:
+Usei apenas um simples script em node para executar os teste da API. Para rodar, basta usar o próprio node ou o nodemon passando um argumento com o IP onde está a aplicação:
 ```sh
-$ nodemon unit-test.js
+$ nodemon unit-test.js 52.67.118.78
 ```
-ou
+ou para testes local (necessário alterar a porta no config/main.js)
 ```sh
-$ nodemon unit-test-external.js
+$ nodemon unit-test.js localhost:3000
 ```
 Este script executa métodos básicos expostos: register, login, getUser
 Este aqui é o resultado dos testes apontando para aws:
 ```sh
-$ nodemon unit-test-external.js
-[nodemon] 1.10.2
-[nodemon] to restart at any time, enter `rs`
-[nodemon] watching: *.*
-[nodemon] starting `node unit-test-external.js`
-Iniciando testes unitarios de fora da aplicação..
+[nodemon] clean exit - waiting for changes before restart
+[nodemon] restarting due to changes...
+[nodemon] starting `node unit-test.js 52.67.118.78`
+Iniciando testes unitarios..
 
 ======= TESTE 1 ========
 POST: http://52.67.118.78/api/auth/register
 resposta:
-{"token":"JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1N2RmNDJhOWRhYTFhMzE0NGIwZjU2MWQiLCJub21lIjoiTHVjYXMiLCJlbWFpbCI6Imx1Y2FzQGdtYWlsLmNvbSIsImlhdCI6MTQ3NDI0OTM4NSwiZXhwIjoxNDc0MjU5NDY1fQ.0Gbg21BW6UCAIN-Rc1ft7smoo_wWFkABFyFfpBfPOnA","user":{"_id":"57df42a9daa1a3144b0f561d","nome":"Lucas","email":"lucas@gmail.com"}}
+{"token":"JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1N2UwOGMyM2U0MmU1YTFiNjQ0OTVlOTAiLCJub21lIjoiTmFtZSIsImVtYWlsIjoibHVjYXNfZXhlbXBsb0BnbWFpbC5jb20iLCJ0ZWxlZm9uZXMiOlt7Im51bWVybyI6IjExMTExMTEiLCJkZGQiOiIyMjIiLCJfaWQiOiI1N2UwOGMyM2U0MmU1YTFiNjQ0OTVlOTEifV0sImRhdGFfY3JpYWNhbyI6IjIwMTYtMDktMjBUMDE6MDg6NTEuNzM3WiIsImRhdGFfYWx0ZXJhY2FvIjoiMjAxNi0wOS0yMFQwMTowODo1MS43MzdaIiwidWx0aW1vX2xvZ2luIjoiMjAxNi0wOS0yMFQwMTowODo1MS43MzdaIiwiaWF0IjoxNDc0MzMzNzMyLCJleHAiOjE0NzQ0MzQ1MzJ9.5hYkzpwMCWaNTF7D2CK7mhiSt3banxk1R-xYvHn4Ffw","user":{"_id":"57e08c23e42e5a1b64495e90","nome":"Name","email":"lucas_exemplo@gmail.com","telefones":[{"numero":"1111111","ddd":"222","_id":"57e08c23e42e5a1b64495e91"}],"data_criacao":"2016-09-20T01:08:51.737Z","data_alteracao":"2016-09-20T01:08:51.737Z","ultimo_login":"2016-09-20T01:08:51.737Z"}}
 
 ======= TESTE 2 ========
 POST: http://52.67.118.78/api/auth/login
 resposta:
-{"token":"JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1N2RmNDJhOWRhYTFhMzE0NGIwZjU2MWQiLCJub21lIjoiTHVjYXMiLCJlbWFpbCI6Imx1Y2FzQGdtYWlsLmNvbSIsImlhdCI6MTQ3NDI0OTM4NSwiZXhwIjoxNDc0MjU5NDY1fQ.0Gbg21BW6UCAIN-Rc1ft7smoo_wWFkABFyFfpBfPOnA","user":{"_id":"57df42a9daa1a3144b0f561d","nome":"Lucas","email":"lucas@gmail.com"}}
+{"token":"JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1N2UwOGMyM2U0MmU1YTFiNjQ0OTVlOTAiLCJub21lIjoiTmFtZSIsImVtYWlsIjoibHVjYXNfZXhlbXBsb0BnbWFpbC5jb20iLCJ0ZWxlZm9uZXMiOlt7Im51bWVybyI6IjExMTExMTEiLCJkZGQiOiIyMjIiLCJfaWQiOiI1N2UwOGMyM2U0MmU1YTFiNjQ0OTVlOTEifV0sImRhdGFfY3JpYWNhbyI6IjIwMTYtMDktMjBUMDE6MDg6NTEuNzM3WiIsImRhdGFfYWx0ZXJhY2FvIjoiMjAxNi0wOS0yMFQwMTowODo1MS43MzdaIiwidWx0aW1vX2xvZ2luIjoiMjAxNi0wOS0yMFQwMTowODo1Mi4zNzlaIiwiaWF0IjoxNDc0MzMzNzMyLCJleHAiOjE0NzQ0MzQ1MzJ9.2xffFNK-S8xOKUEUUpF3pe2uCH7MJF75jj5SqpfXEz0","user":{"_id":"57e08c23e42e5a1b64495e90","nome":"Name","email":"lucas_exemplo@gmail.com","telefones":[{"numero":"1111111","ddd":"222","_id":"57e08c23e42e5a1b64495e91"}],"data_criacao":"2016-09-20T01:08:51.737Z","data_alteracao":"2016-09-20T01:08:51.737Z","ultimo_login":"2016-09-20T01:08:52.379Z"}}
 
 ======= TESTE 3 ========
 GET: http://52.67.118.78/api/auth/getUser
 resposta:
-{"_id":"57df42a9daa1a3144b0f561d","updatedAt":"2016-09-19T01:43:05.054Z","createdAt":"2016-09-19T01:43:05.054Z","email":"lucas@gmail.com","senha":"$2a$05$L5alxOSsU.UH41alEFFNm.osaZ2YP2fLr7cpP/jqANFUQnQ.Ntn6C","data_criacao":"2016-09-19T01:43:05.041Z","data_ateracao":"2016-09-19T01:43:05.041Z","ultimo_login":null,"nome":"Lucas","__v":0,"telefones":[]}
+{"_id":"57e08c23e42e5a1b64495e90","updatedAt":"2016-09-20T01:08:51.739Z","createdAt":"2016-09-20T01:08:51.739Z","email":"lucas_exemplo@gmail.com","senha":"$2a$05$LG6wHsUelm3j7WgXPHmTI.n3flfqbkQ3zJ6IR8k6E0WgxPH7q1Dhe","data_criacao":"2016-09-20T01:08:51.737Z","data_alteracao":"2016-09-20T01:08:51.737Z","ultimo_login":"2016-09-20T01:08:51.737Z","nome":"Name","__v":0,"telefones":[{"numero":"1111111","ddd":"222","_id":"57e08c23e42e5a1b64495e91"}]}
 [nodemon] clean exit - waiting for changes before restart
 ```
 ## Observações
 Com relação aos requisitos:
-- Optei por usar o JWT para gerenciar o tempo em que a sessão será mantida, ao invés de inserir a regra de verificação conforme o solicitado;
+- Estou colocando o token do JWT no body e não no user;
 - Todas as rotas não esperadas são tratadas corretamente conforme o solicitado (retornando json com uma mensagem), porém, as mensagens de erro de autorização estou retornando o default do passport (unauthorized). Não tive tempo de sobrescrever o callback de erro padrão;
-- Não estou retornando todas as informações do usuário. Fiz um SetUser para limpar informações desnecessárias e evitar trafegar muitos dados. Todos as informações são mantidas na base;
 
 ## Referências
 - http://passportjs.org/docs/authenticate
