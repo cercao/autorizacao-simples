@@ -50,6 +50,10 @@ app.use(function(e, req, res, next) {
     if (e.message === "Bad request") {
         res.status(400).send({ mensagem: "Rota não encontrada!"});
     }
+    
+    if (e.message === "Unauthorized") {
+        res.status(403).send({ mensagem: "Usuário e/ou senha inválidos!"});
+    }
 });
 
 // se deu erro de rota não encontrada,

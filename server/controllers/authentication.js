@@ -2,10 +2,10 @@ var jwt = require('jsonwebtoken'),
       crypto = require('crypto'),
       User = require('../models/user'),
       config = require('../config/main');
-	  
+
 function generateToken(user) {  
   return jwt.sign(user, config.secret, {
-    expiresIn: 10080 // em segundos
+    expiresIn: 100800 // em segundos
   });
 }
 
@@ -14,7 +14,11 @@ function setUserInfo(request) {
   return {
     _id: request._id,
     nome: request.nome,    
-    email: request.email    
+    email: request.email,
+    telefones: request.telefones,
+    data_criacao: request.data_criacao,
+    data_alteracao: request.data_alteracao,
+    ultimo_login: request.ultimo_login
   };
 }
 
@@ -22,8 +26,12 @@ function setUserInfo(request) {
 exports.login = function(req, res, next) {
   
   console.log("entrou no login");
-
-  var userInfo = setUserInfo(req.user);
+  var user = req.user;
+  
+  // atualiza ultimo login
+  user.ultimo_login = new Date();
+  
+  var userInfo = setUserInfo(user);
 
   res.status(200).json({
     token: 'JWT ' + generateToken(userInfo),
@@ -72,8 +80,8 @@ exports.register = function(req, res, next) {
         senha: senha,
         telefones: req.body.telefones,
         data_criacao: new Date(),
-        data_ateracao: new Date(),
-        ultimo_login: null,        
+        data_alteracao: new Date(),
+        ultimo_login: new Date(),             
         nome: nome
       });
       

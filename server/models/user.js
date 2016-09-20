@@ -19,7 +19,7 @@ var UserSchema = new Schema({
     ddd : { type: String },
   }],
   data_criacao: {type: Date},
-  data_ateracao: {type: Date},
+  data_alteracao: {type: Date},
   ultimo_login: {type: Date},
   token: { type: String }
 },
