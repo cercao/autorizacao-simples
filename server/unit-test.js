@@ -25,7 +25,7 @@ var cadastrar = function(callbackOK){
    { 'cache-control': 'no-cache',
      'content-type': 'application/json' },
   body: 
-   { email: 'lucas33@gmail.com',
+   { email: 'lucas_exemplo@gmail.com',
      senha: 'teste',
      nome: 'Name',
      telefones: [ { numero: '1111111', ddd: '222' } ] },
@@ -54,7 +54,7 @@ var options = { method: 'POST',
   headers: 
    { 'cache-control': 'no-cache',
      'content-type': 'application/json' },
-  body: { email: 'maluco7@gmail.com', senha: 'teste' },
+  body: { email: 'lucas_exemplo@gmail.com', senha: 'teste' },
   json: true };
 
   console.log("======= TESTE 2 ======== \n" + options.method + ": " + options.url);
